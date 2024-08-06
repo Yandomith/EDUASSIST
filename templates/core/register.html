@@ -35,6 +35,9 @@ Register User
     .my-form {
         width: 80%;
     }
+    .form-control {
+        background-color: rgb(245, 243, 237); /* Set textbox color to match login page */
+    }
 
     @media screen and (max-width:768px) {
         .my-container {
@@ -55,7 +58,7 @@ Register User
                 {% csrf_token %}
                 <fieldset class="form-group">
                     <legend class="border-bottom mb-4">
-                        Join Today!
+                        <b>Register Today</b>
                     </legend>
                     {{ form |crispy }}
                 </fieldset>
@@ -70,7 +73,7 @@ Register User
             </div>
         </div>
         <img class="my-img"
-            src="https://image.freepik.com/free-vector/register-access-login-password-internet-online-website-concept-flat-illustration_385073-108.jpg"
+            src="https://img.freepik.com/free-vector/placeholder-concept-illustration_114360-4983.jpg"
             alt="">
     </div>
 </div>

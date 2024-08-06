@@ -7,7 +7,7 @@ Contact Us
 {% block body %}
 <style>
   .my-container{
-      background-color:rgb(244, 244, 255);
+      background-color:rgb(192, 215, 250);
       padding: 2%;
       height: max-content;
       display: flex;
@@ -19,7 +19,7 @@ Contact Us
       align-items: center;
       justify-content: space-evenly;
       width: 100%;
-      background-color: rgb(227, 227, 255);
+      background-color: rgb(255,255, 255);
       padding:20px
     }
     .fields{
@@ -28,7 +28,7 @@ Contact Us
     .container-mine{
       display: flex;
       flex-direction: row-reverse;
-      background-color: rgb(227, 227, 255);
+      background-color: rgb(255,255, 255);
       align-self: center;
       padding:2%;
       border-style: solid;
@@ -38,9 +38,7 @@ Contact Us
       
     }
     .form-control{
-      background-color:transparent;
-    }.form-control:focus{
-      background-color:transparent;
+      background-color:rgb(245, 243, 237);
     }
     .my-img{
       width:100%;
@@ -63,29 +61,29 @@ Contact Us
 <div class="my-container">
   <div class="container-mine">
     <form class="my-form" method="POST" action="/contact">
-    <h1 class="text-center my-4" style="color: rgb(109, 108, 108);">Contact Us</h1>
+    <h1 class="text-center my-4" style="color: rgb(0,0,0);">Contact Us</h1>
     {% csrf_token %}
         <div class="fields">
-          <label for="inputname4" class="form-label">Name</label>
+          <label for="inputname4" class="form-label"><b>Name</b></label>
           <input type="text" class="form-control" name="name" id="inputname4" >
         </div>
         <div class="fields">
-          <label for="inputemail4" class="form-label">Email Address</label>
+          <label for="inputemail4" class="form-label"><b>Email Address</b></label>
           <input type="email" class="form-control" name="email" id="inputemail4">
         </div>
         <div class="fields">
-            <label for="inputnumber4" class="form-label">Phone No.</label>
+            <label for="inputnumber4" class="form-label"><b>Phone No.</b></label>
             <input type="number" class="form-control" name="contact" id="inputnumber4">
           </div>
         <div class="fields">
-            <label for="inputFormControlTextarea1" class="form-label">Message</label>
+            <label for="inputFormControlTextarea1" class="form-label"><b>Message</b></label>
             <textarea class="form-control" name="desc" id="inputFormControlTextarea1" rows="3"></textarea>
           </div>
         <div class="fields">
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </form>
-      <img class="my-img" src="https://image.freepik.com/free-vector/flat-customer-support-illustration_23-2148897470.jpg" alt="">
+      <img class="my-img" src="https://img.freepik.com/free-vector/call-center-assistant-helping-customers_23-2148191563.jpg" alt="">
 </div>
 </div>
 {% endblock body %}
