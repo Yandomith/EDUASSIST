@@ -2,18 +2,19 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-My Notes
+My ToDos
 {% endblock title %}
 
 {% block body %}
 
 <div class="container pt-4">
     <div class="row p-0 mt-4 px-3 py-3">
+        <!-- Add ToDos Form -->
         <div class="col-lg-4 mx-auto shadow py-3">
             <div class="alert-info alert text-center">
                 <h3>Add ToDos</h3>
             </div>
-            <form action="/add-todo/" method="POST">
+            <form action="{% url 'add-todo' %}" method="POST">
                 {% csrf_token %}
                 {{ form|crispy }}
                 <hr>
@@ -21,22 +22,20 @@ My Notes
             </form>
         </div>
 
+        <!-- ToDos List -->
         <div class="col">
             <div class="border">
-
                 {% if todos|length == 0 %}
-
                 <div class="p-4">
                     <br>
                     <br>
                     <div class="alert alert-info text-center my-0 p-1">
-                        <p class="my-2" style="font-size: 25px;">No Todos</p>
+                        <p class="my-2" style="font-size: 25px;">No ToDos</p>
                     </div>
                     <br>
                     <br>
                 </div>
-
-                {%else%}
+                {% else %}
                 <div>
                     <table class="table my-0">
                         <thead>
@@ -45,43 +44,48 @@ My Notes
                                 <th>Title</th>
                                 <th>Status</th>
                                 <th>Priority</th>
+                                <th>Due Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-
                         <tbody>
-
                             {% for todo in todos %}
                             <tr>
-                                <td>{{forloop.counter}}</td>
-                                <td>{{todo.title}}</td>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ todo.title }}</td>
                                 <td>
-                                    {% if todo.status == 'C'%}
+                                    {% if todo.status == 'C' %}
                                     ✅
-                                    {%else%}
+                                    {% else %}
                                     🕒
-                                    {%endif%}
+                                    {% endif %}
                                 </td>
-                                <td>{{todo.priority}}</td>
+                                <td>{{ todo.priority }}</td>
                                 <td>
-                                    <a href="/delete-todo/{{todo.id}}" title="Delete" class="">🗑️</a>
-                                    {% if todo.status == 'P'%}
-                                    <a href="/change-status/{{todo.id}}/C" title="Mark Completed" class="">✅</a>
-                                    {%else%}
-                                    <a href="/change-status/{{todo.id}}/P" title="Mark Pending" class="">🕒</a>
-                                    {%endif%}
+                                    {% if todo.due_date %}
+                                    {{ todo.due_date|date:"F d, Y H:i" }}
+                                    {% else %}
+                                    N/A
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'delete-todo' todo.id %}" title="Delete" class="">🗑️</a>
+                                    {% if todo.status == 'P' %}
+                                    <a href="{% url 'change-status' todo.id 'C' %}" title="Mark Completed" class="">✅</a>
+                                    {% else %}
+                                    <a href="{% url 'change-status' todo.id 'P' %}" title="Mark Pending" class="">🕒</a>
+                                    {% endif %}
+                                    <a href="{% url 'edit_todo' todo.id %}" title="Edit" class="">✏️</a>
                                 </td>
                             </tr>
-                            {%endfor%}
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
-                {%endif%}
-
+                {% endif %}
             </div>
         </div>
     </div>
-</div>
 </div>
 
 {% endblock body %}

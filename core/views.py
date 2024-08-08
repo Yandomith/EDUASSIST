@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, TODOForm
 from django.contrib.auth.decorators import login_required
 from .models import Note, Profile, TODO
+
 
 # Create your views here.
 
@@ -73,6 +74,19 @@ def delete_todo(request, id):
     TODO.objects.get(pk=id).delete()
     messages.success(request, f'ToDo Deleted Successfully')
     return redirect("/to-dos")
+
+@login_required
+def edit_todo(request, pk):
+    todo = get_object_or_404(TODO, pk=pk)
+    if request.method == 'POST':
+        form = TODOForm(request.POST, instance=todo)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Changes saved')
+            return redirect('to-dos')  # Redirect to the to-dos page or wherever you want
+    else:
+        form = TODOForm(instance=todo)
+    return render(request, 'core/edit_todo.html', {'form': form})
 
 @login_required
 def change_todo(request, id, status):

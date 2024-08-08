@@ -30,4 +30,7 @@ class ProfileUpdateForm(forms.ModelForm):
 class TODOForm(forms.ModelForm):
     class Meta:
         model = TODO
-        fields = ['title', 'status','priority']
+        fields = ['title', 'status','priority', 'due_date']
+        widgets = {
+            'due_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }
