@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>{{ StudyMaterial.title }}</h1>
+    <p><strong>Content:</strong> {{ StudyMaterial.content }}</p>
+    <p><strong>Subject:</strong> {{ StudyMaterial.subject }}</p>
+    
+    <!-- Optionally, you can add links for navigation -->
+    <a href="{% url 'materials-list' %}">Back to Study Materials List</a>
+{% endblock %}

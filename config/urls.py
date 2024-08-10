@@ -23,6 +23,8 @@ urlpatterns = [
     path('notes/', user_views.notes, name='notes'),
     path('delete-notes/<int:docid>/', user_views.delete_note, name='delete-note'),
     path('change-status/<int:id>/<str:status>/', user_views.change_todo, name='change-status'),
+    path('materials/',user_views.StudyMaterialListView.as_view(), name='materials-list'),
+    path('materials/<int:pk>/',user_views.StudyMaterialDetailView.as_view(), name='materials-detail'),
     path('', include('index.urls'))
 ]
 

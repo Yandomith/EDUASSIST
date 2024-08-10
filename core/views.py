@@ -2,7 +2,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, TODOForm
 from django.contrib.auth.decorators import login_required
-from .models import Note, Profile, TODO
+from django.views.generic import ListView, DetailView
+from .models import Note, Profile, TODO, StudyMaterials
 
 
 # Create your views here.
@@ -137,3 +138,11 @@ def delete_note(request, docid):
     document.delete()
     messages.success(request, f'Note Deleted Successfully')
     return redirect('/notes/?docid=0')
+
+class StudyMaterialListView(ListView):
+    model= StudyMaterials
+
+
+class StudyMaterialDetailView(DetailView):
+    model= StudyMaterials
+    context_object_name = 'StudyMaterial'

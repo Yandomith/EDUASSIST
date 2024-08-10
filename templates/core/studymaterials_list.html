@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<ul>
+    {% for StudyMaterial in object_list %}
+        <li> <a href="{% url 'materials-detail' StudyMaterial.pk  %}" class=" text-decoration-none">{{ StudyMaterial.title }}  </a> Posted in {{StudyMaterial.date_posted}}</li>
+
+    {% empty %}
+        <li>No study materials available.</li>
+    {% endfor %}
+    </ul>
+    {% endblock body %}

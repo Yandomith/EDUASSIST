@@ -45,3 +45,16 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+    
+class StudyMaterials(models.Model):
+    subject_choices= [
+        ('Compiler', 'Compiler'),
+        ('MM', 'MM'),
+        ('Java', 'Java'),
+        ('SPM', 'SPM'),
+        ('BRM', 'BRM'),
+    ]
+    title = models.CharField(max_length=200, blank=False)
+    content= models.TextField(blank=False)
+    subject = models.CharField(max_length=50 , choices=subject_choices)
+    date_posted= models.DateTimeField(auto_now_add=True)
