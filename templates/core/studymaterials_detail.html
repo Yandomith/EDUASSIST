@@ -1,0 +1,9 @@
+<!-- Detail view template -->
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>{{ studymaterial.title }}</h1>
+    <p><strong>Content:</strong> {{ studymaterial.content }}</p>
+    <p><strong>Subject:</strong> {{ studymaterial.subject }}</p>
+    <a href="{% url 'materials-list' %}">Back to Study Materials List</a>
+{% endblock %}
